@@ -1,0 +1,54 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Model weights & Hugging Face exports
+checkpoints/
+hf_export/
+*.pt
+*.safetensors
+*.onnx
+*.bin
+
+# Datasets and raw downloads (root data only)
+/data/
+*.tar.gz
+*.dly
+*.parquet.tmp
+
+# Environments
+.env
+.venv
+venv/
+ENV/
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
