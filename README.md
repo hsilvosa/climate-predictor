@@ -26,20 +26,26 @@ The `ClimateSpatiotemporalNet` combines geometric spatial modeling with multi-ho
 
 ## Benchmark Results
 
-Evaluated on held-out out-of-sample test observations (2023-2026):
+Evaluated on held-out out-of-sample test observations (2023-2026). Values come from `checkpoints/test_evaluation_metrics.json` (written by `scripts/02_train_model.py`) and `checkpoints/benchmark_report.json` (written by `scripts/03_evaluate_benchmark.py`). Skill is `1 - MAE_model / MAE_persistence` over the full 14-day horizon, where persistence repeats the last observed value.
 
 | Metric / Variable | Horizon / Setting | Model Score | Skill vs Persistence |
 | :--- | :--- | :--- | :--- |
-| **TMAX (Max Temperature)** | Day 1 MAE | 2.40 °C | +28.4% Skill |
-| **TMAX (Max Temperature)** | Day 7 MAE | 2.73 °C | +19.1% Skill |
-| **TMAX (Max Temperature)** | Overall 14-Day MAE | 2.69 °C | +19.1% Skill |
-| **TMAX 80% CI Coverage** | P10 to P90 Band | 81.4% | Nominal: 80.0% |
-| **TMIN (Min Temperature)** | Overall 14-Day MAE | 2.48 °C | +21.1% Skill |
+| **TMAX (Max Temperature)** | Day 1 MAE | 2.40 °C | -- |
+| **TMAX (Max Temperature)** | Day 7 MAE | 2.73 °C | -- |
+| **TMAX (Max Temperature)** | Overall 14-Day MAE | 2.69 °C | +19.1% Skill (persistence 3.33 °C) |
+| **TMAX 80% CI Coverage** | P10 to P90 Band | 80.2% | Nominal: 80.0% |
+| **TMIN (Min Temperature)** | Overall 14-Day MAE | 2.48 °C | +21.1% Skill (persistence 3.14 °C) |
 | **PRCP (Precipitation)** | Overall 14-Day MAE | 2.12 mm | -- |
 | **Frost / Freeze Hazard** | ROC-AUC / F1 | 0.964 / 0.854 | Highly Calibrated |
 | **Deluge Hazard Alert** | ROC-AUC / F1 | 0.869 / 0.626 | High Precision |
 | **Heatwave Alert (EHF)** | ROC-AUC / F1 | 0.770 / 0.410 | Early Warning |
-| **Mean CRPS Score** | Multi-target Average | 0.8209 | Calibrated Probabilities |
+| **Mean CRPS Score** | Multi-target Average (quantile estimate) | 0.8209 | -- |
+
+## Next Steps
+
+- Report skill against persistence per forecast day (day 1, 3, 7, 14) in `scripts/03_evaluate_benchmark.py`; today the per-day rows show MAE only.
+- Add a climatology baseline next to persistence.
+- Publish the benchmark reports (`test_evaluation_metrics.json`, `benchmark_report.json`) with each release so the table above can be traced to a run.
 
 ## Project Structure
 
